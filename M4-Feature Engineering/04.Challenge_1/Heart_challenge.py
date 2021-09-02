@@ -14,8 +14,8 @@ from sklearn import metrics         # accuracy_score, balanced_accuracy_score, p
 from sklearn import set_config
 
 set_config(display='diagram') # Useful for display the pipeline
-
-df =pd.read_csv("C:/Users/User/Documents/Strive_AI_Jun_21/M4-Feature Engineering/04.Challenge_1/heart.csv")
+DATA_PATH = "C:/Users/User/Documents/Strive_AI_Jun_21/M4-Feature Engineering/04.Challenge_1/"
+df =pd.read_csv(DATA_PATH+"heart.csv")
 print(df.head())
 print(df.info())
 
