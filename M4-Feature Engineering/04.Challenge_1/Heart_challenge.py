@@ -250,4 +250,4 @@ results_ord = results.sort_values(by=['Accuracy'], ascending=False, ignore_index
 results_ord.index += 1 
 results_ord.style.bar(subset=['Accuracy', 'Bal Acc.'], vmin=0, vmax=100, color='#5fba7d')
 print(results_ord)
-print('Highest of all accuracy:',results_ord['Accuracy'].iloc[0],'Method is',results_ord[',Model :'].iloc[0])
+print('Highest of all accuracy:',results_ord['Accuracy'].iloc[0],',Method is:',results_ord['Model'].iloc[0])
