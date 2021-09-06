@@ -16,8 +16,13 @@ from sklearn import set_config
 set_config(display='diagram') # Useful for display the pipeline
 DATA_PATH = "C:/Users/User/Documents/Strive_AI_Jun_21/M4-Feature Engineering/04.Challenge_1/"
 df =pd.read_csv(DATA_PATH+"heart.csv")
+<<<<<<< Updated upstream
 print(df.head())
 print(df.info())
+=======
+# print(df.head())
+# print(df.info())
+>>>>>>> Stashed changes
 
 # also can be done in the pipeline
 # from sklearn.preprocessing import StandardScaler
@@ -80,7 +85,7 @@ classifiers = {
 for tree, method in classifiers.items():
     classifiers[tree]=pipeline.Pipeline([("preprocessing", tree_prepro),(tree,method)])
 
-print(classifiers['SVM'])
+# print(classifiers['SVM'])
 
 # checking the regressors
 Regressors = {
@@ -125,7 +130,7 @@ for model_name, model in classifiers.items():
 results_ord = results.sort_values(by=['Accuracy'], ascending=False, ignore_index=True)
 results_ord.index += 1 
 results_ord.style.bar(subset=['Accuracy', 'Bal Acc.'], vmin=0, vmax=100, color='#5fba7d')
-print(results_ord)
+# print(results_ord)
 
 #univariate selection # selecting the best features
 #feature engineering
@@ -139,10 +144,10 @@ df_scores=pd.DataFrame(model.scores_)
 df_columns =pd.DataFrame(X.columns)
 feature_scores = pd.concat([df_columns,df_scores],axis=1)
 feature_scores.columns=['features','scores']
-print(feature_scores) #highest the score 
+# print(feature_scores) #highest the score 
 
 best_features = feature_scores.nlargest(4,'scores')['features'].tolist()
-print('the Best features for this data:',best_features )
+# print('the Best features for this data:',best_features )
 
 # Data enhancement based on gender with best features
 def enhancement(data):
@@ -213,7 +218,7 @@ for model_name, model in classifiers.items():
 results_ord = results.sort_values(by=['Accuracy'], ascending=False, ignore_index=True)
 results_ord.index += 1 
 results_ord.style.bar(subset=['Accuracy', 'Bal Acc.'], vmin=0, vmax=100, color='#5fba7d')
-print(results_ord)
+# print(results_ord)
 
 #adding a new column
 gen['new_col']=gen[best_features].mean(axis=1)
@@ -222,32 +227,45 @@ X,y = gen.drop(['output'],axis=1),gen.output
 import time
 X_train,X_test,y_train,y_test =model_selection.train_test_split(X,y,test_size=0.2,stratify = y,random_state=0)
 
-results = pd.DataFrame({'Model': [], 'Accuracy': [], 'Bal Acc.': [], 'Time': []})
+def predictions(data):
+    results = pd.DataFrame({'Model': [], 'Accuracy': [], 'Bal Acc.': [], 'Time': []})
+    for model_name, model in classifiers.items():
+        # start_time = time.time()
+        
+        # FOR EVERY PIPELINE (PREPRO + MODEL) -> TRAIN WITH TRAIN DATA (x_train)
+        model.fit(X_train,y_train)
+        # GET PREDICTIONS USING x_val
+        pred = model.predict(data)# CODE HERE
 
-
-for model_name, model in classifiers.items():
-    start_time = time.time()
-    
-    # FOR EVERY PIPELINE (PREPRO + MODEL) -> TRAIN WITH TRAIN DATA (x_train)
-    model.fit(X_train,y_train)
-    # GET PREDICTIONS USING x_val
-    pred = model.predict(X_test)# CODE HERE
-
-    total_time = time.time() - start_time
-    
-    results = results.append({"Model":    model_name,
-                              "Accuracy": metrics.accuracy_score(y_test, pred)*100,
-                              "Bal Acc.": metrics.balanced_accuracy_score(y_test, pred)*100,
-                              "Time":     total_time},
-                              ignore_index=True)
+        # total_time = time.time() - start_time
+        
+        # results = results.append({"Model":    model_name,
+        #                         "Accuracy": metrics.accuracy_score(1, pred)*100,
+        #                         "Bal Acc.": metrics.balanced_accuracy_score(1, pred)*100,
+        #                         "Time":     total_time},
+        #                         ignore_index=True)
+        # results_ord =results.sort_values(by=['Accuracy'], ascending=False, ignore_index=True)
+    return pred
                               
                               
 
 
 ### BEGIN SOLUTION
 
+<<<<<<< Updated upstream
 results_ord = results.sort_values(by=['Accuracy'], ascending=False, ignore_index=True)
 results_ord.index += 1 
 results_ord.style.bar(subset=['Accuracy', 'Bal Acc.'], vmin=0, vmax=100, color='#5fba7d')
 print(results_ord)
 print('Highest of all accuracy:',results_ord['Accuracy'].iloc[0],',Method is:',results_ord['Model'].iloc[0])
+=======
+# results_ord = results.sort_values(by=['Accuracy'], ascending=False, ignore_index=True)
+# results_ord.index += 1 
+# results_ord.style.bar(subset=['Accuracy', 'Bal Acc.'], vmin=0, vmax=100, color='#5fba7d')
+# print(results_ord)
+# pred = predictions(X_test.iloc[:1])
+# print(pred)
+# print('Highest of all accuracy:',results_ord['Accuracy'].iloc[0],',Method is:',results_ord['Model'].iloc[0])
+
+# age = int(input('How old are you? (integer)'))
+>>>>>>> Stashed changes
