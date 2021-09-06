@@ -27,5 +27,3 @@ if prediction == 0:
         print("You are healthy up to date ")
 else:
         print("You are suggested to use Hippocratia drug as you have a high risk of heart attack")
-
-

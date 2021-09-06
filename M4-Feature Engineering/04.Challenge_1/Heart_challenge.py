@@ -16,13 +16,6 @@ from sklearn import set_config
 set_config(display='diagram') # Useful for display the pipeline
 DATA_PATH = "C:/Users/User/Documents/Strive_AI_Jun_21/M4-Feature Engineering/04.Challenge_1/"
 df =pd.read_csv(DATA_PATH+"heart.csv")
-<<<<<<< Updated upstream
-print(df.head())
-print(df.info())
-=======
-# print(df.head())
-# print(df.info())
->>>>>>> Stashed changes
 
 # also can be done in the pipeline
 # from sklearn.preprocessing import StandardScaler
@@ -191,46 +184,12 @@ X,y = gen.drop(['output'],axis=1),gen.output
 import time
 X_train,X_test,y_train,y_test =model_selection.train_test_split(X,y,test_size=0.2,stratify = y,random_state=0)
 
-results = pd.DataFrame({'Model': [], 'Accuracy': [], 'Bal Acc.': [], 'Time': []})
-
-
-for model_name, model in classifiers.items():
-    start_time = time.time()
-    
-    # FOR EVERY PIPELINE (PREPRO + MODEL) -> TRAIN WITH TRAIN DATA (x_train)
-    model.fit(X_train,y_train)
-    # GET PREDICTIONS USING x_val
-    pred = model.predict(X_test)# CODE HERE
-
-    total_time = time.time() - start_time
-    
-    results = results.append({"Model":    model_name,
-                              "Accuracy": metrics.accuracy_score(y_test, pred)*100,
-                              "Bal Acc.": metrics.balanced_accuracy_score(y_test, pred)*100,
-                              "Time":     total_time},
-                              ignore_index=True)
-                              
-                              
-
-
-### BEGIN SOLUTION
-
-results_ord = results.sort_values(by=['Accuracy'], ascending=False, ignore_index=True)
-results_ord.index += 1 
-results_ord.style.bar(subset=['Accuracy', 'Bal Acc.'], vmin=0, vmax=100, color='#5fba7d')
-# print(results_ord)
-
-#adding a new column
-gen['new_col']=gen[best_features].mean(axis=1)
-
-X,y = gen.drop(['output'],axis=1),gen.output
-import time
-X_train,X_test,y_train,y_test =model_selection.train_test_split(X,y,test_size=0.2,stratify = y,random_state=0)
-
 def predictions(data):
     results = pd.DataFrame({'Model': [], 'Accuracy': [], 'Bal Acc.': [], 'Time': []})
+
+
     for model_name, model in classifiers.items():
-        # start_time = time.time()
+        start_time = time.time()
         
         # FOR EVERY PIPELINE (PREPRO + MODEL) -> TRAIN WITH TRAIN DATA (x_train)
         model.fit(X_train,y_train)
@@ -240,25 +199,56 @@ def predictions(data):
         # total_time = time.time() - start_time
         
         # results = results.append({"Model":    model_name,
-        #                         "Accuracy": metrics.accuracy_score(1, pred)*100,
-        #                         "Bal Acc.": metrics.balanced_accuracy_score(1, pred)*100,
+        #                         "Accuracy": metrics.accuracy_score(y_test, pred)*100,
+        #                         "Bal Acc.": metrics.balanced_accuracy_score(y_test, pred)*100,
         #                         "Time":     total_time},
         #                         ignore_index=True)
-        # results_ord =results.sort_values(by=['Accuracy'], ascending=False, ignore_index=True)
+
+    results_ord = results.sort_values(by=['Accuracy'], ascending=False, ignore_index=True)
+    results_ord.index += 1 
+    results_ord.style.bar(subset=['Accuracy', 'Bal Acc.'], vmin=0, vmax=100, color='#5fba7d')
     return pred
-                              
+                                
                               
 
 
 ### BEGIN SOLUTION
 
-<<<<<<< Updated upstream
-results_ord = results.sort_values(by=['Accuracy'], ascending=False, ignore_index=True)
-results_ord.index += 1 
-results_ord.style.bar(subset=['Accuracy', 'Bal Acc.'], vmin=0, vmax=100, color='#5fba7d')
-print(results_ord)
-print('Highest of all accuracy:',results_ord['Accuracy'].iloc[0],',Method is:',results_ord['Model'].iloc[0])
-=======
+
+# print(results_ord)
+
+#adding a new column
+gen['new_col']=gen[best_features].mean(axis=1)
+
+X,y = gen.drop(['output'],axis=1),gen.output
+# import time
+# X_train,X_test,y_train,y_test =model_selection.train_test_split(X,y,test_size=0.2,stratify = y,random_state=0)
+# results = pd.DataFrame({'Model': [], 'Accuracy': [], 'Bal Acc.': [], 'Time': []})
+# for model_name, model in classifiers.items():
+#         # start_time = time.time()
+        
+#         # FOR EVERY PIPELINE (PREPRO + MODEL) -> TRAIN WITH TRAIN DATA (x_train)
+#         model.fit(X_train,y_train)
+#         # GET PREDICTIONS USING x_val
+#         pred = model.predict(data)# CODE HERE
+
+        # total_time = time.time() - start_time
+        
+        # results = results.append({"Model":    model_name,
+        #                         "Accuracy": metrics.accuracy_score(1, pred)*100,
+        #                         "Bal Acc.": metrics.balanced_accuracy_score(1, pred)*100,
+        #                         "Time":     total_time},
+        #                         ignore_index=True)
+        # results_ord =results.sort_values(by=['Accuracy'], ascending=False, ignore_index=True)
+
+    
+
+                              
+                              
+# print (pred)
+
+### BEGIN SOLUTIOn
+
 # results_ord = results.sort_values(by=['Accuracy'], ascending=False, ignore_index=True)
 # results_ord.index += 1 
 # results_ord.style.bar(subset=['Accuracy', 'Bal Acc.'], vmin=0, vmax=100, color='#5fba7d')
@@ -268,4 +258,4 @@ print('Highest of all accuracy:',results_ord['Accuracy'].iloc[0],',Method is:',r
 # print('Highest of all accuracy:',results_ord['Accuracy'].iloc[0],',Method is:',results_ord['Model'].iloc[0])
 
 # age = int(input('How old are you? (integer)'))
->>>>>>> Stashed changes
+
