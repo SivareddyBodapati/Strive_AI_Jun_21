@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% from "components/card.html" import card %}
+{% block title %}Home Page{% endblock %}
+
+
+
+
+{% block content %}
+     
+<div class="container">
+  <div class="row">
+      {%for blog in blogs%}
+            <div class="col">
+        {{card('https://via.placeholder.com/200x300',blog['title'],blog['content'])}}
+        </div>
+  
+        
+ 
+    {% endfor %}
+    
+    
+   
+  </div>
+</div>
+   
+  
+    
+    <a href="/about"> go to about page</a>
+{% endblock %}

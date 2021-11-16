@@ -1,0 +1,20 @@
+{% macro hero() -%}
+
+<div class="row text-light">
+    <div class="col order-md-1 order-sm-2 hero-text">
+        <h1>
+            Learn development with great articles.
+Find the latest of my writing here.
+        </h1>
+        <form action="/" method="get" class="d-flex search-form">
+        <input name="q" class="form-control me-2 search-elements" type="search" placeholder="Search" aria-label="Search">
+      </form>
+    </div>
+    <div class="col order-md-2 order-sm-1">
+        <img src="{{ url_for('static', filename='illustration.png') }}" alt="illustration">
+    </div>
+</div>
+
+
+
+{%- endmacro %}

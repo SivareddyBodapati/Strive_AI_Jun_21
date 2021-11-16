@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+
+
+    {% block content %}
+    <h1 class="mt-2">Create a blog</h1>
+ 
+     {{ ckeditor.load() }}
+     <form method="POST" action="/admin/new" enctype="multipart/form-data">
+    <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input name="title" required="true" type="text" class="form-control" id="text" aria-describedby="text">
+  </div>
+
+      <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+    <input required="true" name="category" type="text" class="form-control" id="text" aria-describedby="text">
+  </div>
+
+
+    <div class="mb-3">
+    <label for="cover" class="form-label">Cover</label>
+    <input name="cover" class="form-control form-control-lg" id="formFileLg" type="file">
+  </div>
+
+ 
+
+  
+    {{ ckeditor.create() }}
+  <button type="submit" class="btn btn-light mt-2">Create Blog</button>
+    </form>
+    {% endblock %}

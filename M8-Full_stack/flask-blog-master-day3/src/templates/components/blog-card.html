@@ -1,0 +1,13 @@
+{%macro blog_card(blog) %}
+<a href="/blog/{{blog.slug}}"">
+
+    <div class="card" style="width: 18rem;">
+  <img src={{blog.cover_url}} class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{blog.title}}</h5>
+  </div>
+</div>
+</a>
+
+{%endmacro%}
+

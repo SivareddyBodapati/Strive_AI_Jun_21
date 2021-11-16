@@ -1,0 +1,14 @@
+{%macro categories(categories_array) %}
+    <div class="categories">
+        
+            {% for category in categories_array %}
+             
+                <h4>
+                    <span class="badge rounded-pill">
+                     <a href="/?q={{category}}">{{ category }}</a>
+                </span>
+                </h4>
+            {% endfor %}
+      
+    </div>    
+{%endmacro%}

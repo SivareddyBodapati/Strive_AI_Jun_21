@@ -1,0 +1,12 @@
+:root {
+--background-color: #001524ff;
+--primary-color: #9649cbff;
+--secondary-color: #4ecdc4ff;
+--text-color : #fff;
+}
+
+body{
+    background-color:var(--background-color);
+ 
+    font-family: 'Montserrat', sans-serif;
+}
